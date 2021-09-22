@@ -45,7 +45,7 @@ class Result {
     required this.posterPath,
     required this.video,
     required this.voteAverage,
-    required this.title,
+    this.title = '',
     required this.overview,
     required this.releaseDate,
     required this.voteCount,
