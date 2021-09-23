@@ -44,7 +44,7 @@ class _HomePageState extends State<HomePage> {
                       itemCount: snapshot.data!.results.length,
                       gridDelegate:
                           const SliverGridDelegateWithFixedCrossAxisCount(
-                        childAspectRatio: 6.0 / 10.0,
+                        childAspectRatio: 5.5 / 10.0,
                         crossAxisCount: 2,
                       ),
                       // scrollDirection: Axis.horizontal,
