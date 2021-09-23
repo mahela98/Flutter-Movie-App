@@ -19,6 +19,13 @@ class MovieCard extends StatelessWidget {
             image: NetworkImage(image_url + movie.posterPath),
             fit: BoxFit.cover,
             repeat: ImageRepeat.noRepeat),
+        boxShadow: [
+          BoxShadow(
+              color: Colors.black.withOpacity(0.7),
+              blurRadius: 2.0,
+              spreadRadius: 0.0,
+              offset: const Offset(2.0, 2.0)),
+        ],
       ),
       height: 100.h,
       width: 100.w,
