@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_movie_app/components/movie_card.dart';
 import 'package:flutter_movie_app/models/movie_data.dart';
@@ -24,49 +25,42 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       // extendBodyBehindAppBar: true,
       appBar: AppBar(
-        backgroundColor: Colors.black45,
+        backgroundColor: Colors.orangeAccent[400],
+        shadowColor: Colors.black,
+        elevation: 1,
         title: const Center(
           child: Text('Movie App'),
         ),
       ),
       body: Row(
         children: <Widget>[
-          // const Text(
-          //   'Top Rated',
-          //   textAlign: TextAlign.left,
-          //   style: TextStyle(
-          //     fontFamily: 'Varela',
-          //     fontSize: 32,
-          //     fontWeight: FontWeight.bold,
-          //   ),
-          // ),
-          // const SizedBox(
-          //   height: 10,
-          // ),
           Expanded(
             child: FutureBuilder<Movie?>(
                 future: _movieModel,
                 builder: (context, AsyncSnapshot snapshot) {
                   if (snapshot.data != null) {
-                    return ListView.builder(
+                    return GridView.builder(
+                      // padding: const EdgeInsets.fromLTRB(0, 20, 0, 0),
                       itemCount: snapshot.data!.results.length,
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                        childAspectRatio: 8.0 / 10.0,
+                        crossAxisCount: 2,
+                      ),
+                      // scrollDirection: Axis.horizontal,
                       itemBuilder: (context, index) {
                         var movie = snapshot.data!.results[index];
-                        return InteractiveViewer(
+                        return Padding(
+                          padding: const EdgeInsets.all(0),
                           child: TextButton(
                             child: MovieCard(movie),
-                            onPressed: () {
-                              Navigator.push(context,
-                                  MaterialPageRoute(builder: (context) {
-                                return const MovieDetailsPage();
-                              }));
-                            },
+                            onPressed: () {},
                           ),
                         );
                       },
                     );
                   } else {
-                    return Center(child: CircularProgressIndicator());
+                    return const Center(child: CircularProgressIndicator());
                   }
                 }),
           ),

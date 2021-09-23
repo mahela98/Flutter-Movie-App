@@ -1,5 +1,8 @@
+import 'package:sizer/sizer.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_movie_app/components/relesed_date.dart';
 
+@immutable
 class MovieCard extends StatelessWidget {
   final movie;
 
@@ -9,51 +12,14 @@ class MovieCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      // clipBehavior: Clip.antiAlias,
-      child: Container(
-        height: 200,
-        alignment: Alignment.centerLeft,
-        child: Row(
-          children: [
-            Image.network(image_url + movie.posterPath),
-            const SizedBox(
-              width: 15,
-            ),
-            Container(
-              child: Column(
-                children: [
-                  SizedBox(
-                    width: 180,
-                    child: Text(
-                      movie.title,
-                      style: const TextStyle(
-                        fontSize: 25.0,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    width: 180,
-                    child: Text(movie.overview.substring(0, 100)),
-                  ),
-                  SizedBox(
-                    width: 180,
-                    child: Text(movie.releaseDate.toString()),
-                  ),
-                ],
-              ),
-              alignment: Alignment.topLeft,
-            ),
-          ],
-        ),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10.0),
-          // image: DecorationImage(
-          //   image: NetworkImage(image_url + movie.posterPath),
-          //   fit: BoxFit.fitHeight,
-          // ),
-        ),
+    return SizedBox(
+      height: 30.h,
+      child: Card(
+        margin: EdgeInsets.zero,
+        color: Colors.amberAccent[700],
+
+        // clipBehavior: Clip.antiAlias,
+        child: Image.network(image_url + movie.posterPath),
       ),
     );
   }
