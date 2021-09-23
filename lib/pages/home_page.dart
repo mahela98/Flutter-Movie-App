@@ -23,9 +23,10 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // extendBodyBehindAppBar: true,
+      extendBodyBehindAppBar: true,
       appBar: AppBar(
-        backgroundColor: Colors.orangeAccent[400],
+        backgroundColor: Colors.transparent,
+        // backgroundColor: Colors.orangeAccent[400],
         shadowColor: Colors.black,
         elevation: 1,
         title: const Center(
@@ -57,7 +58,7 @@ class _HomePageState extends State<HomePage> {
                             onPressed: () {
                               Navigator.push(context,
                                   MaterialPageRoute(builder: (context) {
-                                return MovieDetailsPage();
+                                return MovieDetailsPage(movie);
                               }));
                             },
                           ),
