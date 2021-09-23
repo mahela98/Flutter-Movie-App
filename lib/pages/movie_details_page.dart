@@ -17,33 +17,61 @@ class _MovieDetailsPageState extends State<MovieDetailsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: CustomScrollView(
+        scrollDirection: Axis.vertical,
         slivers: <Widget>[
           SliverAppBar(
             expandedHeight: 200.0,
             floating: false,
             pinned: false,
             flexibleSpace: FlexibleSpaceBar(
-              //This exactly likeyour AppBar
               title: Text(
                 widget.movie.title,
                 textAlign: TextAlign.start,
                 style: TextStyle(),
               ),
-              // background: "Whatever you want",
               background: Container(
                 decoration: BoxDecoration(
                     image: DecorationImage(
                         image: NetworkImage(
                           widget.image_url + widget.movie.backdropPath,
                         ),
-                        fit: BoxFit.fill)),
+                        fit: BoxFit.fill),
+                    color: Colors.red),
                 // color: Colors.red,
               ),
             ),
           ),
-          SliverFillRemaining(
-            child: Center(
-              child: Text(widget.movie.title),
+          SliverToBoxAdapter(
+            child: Scrollbar(
+              child: Padding(
+                padding: EdgeInsets.all(1),
+                child: Container(
+                  child: Column(
+                    children: [
+                      Image(
+                        image: NetworkImage(
+                          widget.image_url + widget.movie.backdropPath,
+                        ),
+                      ),
+                      Image(
+                        image: NetworkImage(
+                          widget.image_url + widget.movie.backdropPath,
+                        ),
+                      ),
+                      Image(
+                        image: NetworkImage(
+                          widget.image_url + widget.movie.backdropPath,
+                        ),
+                      ),
+                      Image(
+                        image: NetworkImage(
+                          widget.image_url + widget.movie.backdropPath,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
             ),
           ),
         ],

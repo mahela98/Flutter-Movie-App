@@ -4,3 +4,5 @@ https://app.quicktype.io/
 
 things to do 
     Flutter Carousel Slider
+
+    https://www.codegrepper.com/code-examples/whatever/how+to+use+silver+appbar+in+flutter
