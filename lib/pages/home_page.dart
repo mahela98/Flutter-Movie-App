@@ -44,7 +44,7 @@ class _HomePageState extends State<HomePage> {
                       itemCount: snapshot.data!.results.length,
                       gridDelegate:
                           const SliverGridDelegateWithFixedCrossAxisCount(
-                        childAspectRatio: 8.0 / 10.0,
+                        childAspectRatio: 6.0 / 10.0,
                         crossAxisCount: 2,
                       ),
                       // scrollDirection: Axis.horizontal,
@@ -54,7 +54,12 @@ class _HomePageState extends State<HomePage> {
                           padding: const EdgeInsets.all(0),
                           child: TextButton(
                             child: MovieCard(movie),
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.push(context,
+                                  MaterialPageRoute(builder: (context) {
+                                return MovieDetailsPage();
+                              }));
+                            },
                           ),
                         );
                       },

@@ -12,12 +12,28 @@ class MovieCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      margin: EdgeInsets.zero,
-      color: Colors.amberAccent[700],
-
-      // clipBehavior: Clip.antiAlias,
-      child: Image.network(image_url + movie.posterPath),
+    return Container(
+      decoration: BoxDecoration(
+        image: DecorationImage(
+            image: NetworkImage(image_url + movie.posterPath),
+            fit: BoxFit.cover),
+      ),
+      height: 100.h,
+      width: 100.w,
+      // color: Colors.amber,
+      child: Column(
+        children: [
+          Flexible(
+            child: Text("asd"),
+            flex: 5,
+            fit: FlexFit.tight,
+          ),
+          Flexible(
+            child: Text("asd"),
+            flex: 1,
+          ),
+        ],
+      ),
     );
   }
 }
