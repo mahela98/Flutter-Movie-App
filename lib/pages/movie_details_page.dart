@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_movie_app/components/youtube_video.dart';
 import 'package:sizer/sizer.dart';
 import 'package:intl/intl.dart';
 
@@ -56,7 +57,6 @@ class _MovieDetailsPageState extends State<MovieDetailsPage> {
                       SizedBox(
                         height: 1.h,
                       ),
-
                       Container(
                         padding: const EdgeInsets.all(18),
                         decoration: BoxDecoration(
@@ -87,11 +87,9 @@ class _MovieDetailsPageState extends State<MovieDetailsPage> {
                           ],
                         ),
                       ),
-
                       SizedBox(
                         height: 0.h,
                       ),
-
                       Container(
                         // color: Colors.white,
                         padding: const EdgeInsets.all(20.0),
@@ -205,7 +203,6 @@ class _MovieDetailsPageState extends State<MovieDetailsPage> {
                           ],
                         ),
                       ),
-
                       SizedBox(
                         height: 2.h,
                       ),
@@ -220,6 +217,12 @@ class _MovieDetailsPageState extends State<MovieDetailsPage> {
                             color: Colors.blue[100],
                           ),
                         ),
+                      ),
+                      SizedBox(
+                        height: 5.h,
+                      ),
+                      Container(
+                        child: YoutubeVideo(),
                       ),
                       SizedBox(
                         height: 8.h,
@@ -241,22 +244,6 @@ class _MovieDetailsPageState extends State<MovieDetailsPage> {
                       SizedBox(
                         height: 5.h,
                       ),
-
-                      // Image(
-                      //   image: NetworkImage(
-                      //     widget.imageUrl + widget.movie.backdropPath,
-                      //   ),
-                      // ),
-                      // Image(
-                      //   image: NetworkImage(
-                      //     widget.imageUrl + widget.movie.backdropPath,
-                      //   ),
-                      // ),
-                      // Image(
-                      //   image: NetworkImage(
-                      //     widget.imageUrl + widget.movie.backdropPath,
-                      //   ),
-                      // ),
                     ],
                   ),
                 ),
