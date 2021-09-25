@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_movie_app/urls/urls.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 import 'package:intl/intl.dart';
-import 'package:youtube_api/youtube_api.dart';
 
 class YoutubeVideo extends StatefulWidget {
   final movieName;
@@ -24,7 +23,7 @@ class _YoutubeVideoState extends State<YoutubeVideo> {
           children: [
             YoutubePlayer(
               controller: YoutubePlayerController(
-                initialVideoId: 'IpAPYmSm_KA',
+                initialVideoId: 'Fp9pNPdNwjI',
                 flags: const YoutubePlayerFlags(
                   autoPlay: false,
                   mute: false,
