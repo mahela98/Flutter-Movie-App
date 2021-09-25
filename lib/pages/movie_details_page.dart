@@ -222,7 +222,7 @@ class _MovieDetailsPageState extends State<MovieDetailsPage> {
                         height: 5.h,
                       ),
                       Container(
-                        child: YoutubeVideo(),
+                        child: YoutubeVideo(widget.movie.title),
                       ),
                       SizedBox(
                         height: 8.h,
