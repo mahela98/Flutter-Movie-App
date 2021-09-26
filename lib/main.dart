@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:sizer/sizer.dart';
-import 'pages/home_page.dart';
+import 'pages/trending_movies.dart';
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
@@ -23,7 +23,32 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
             primarySwatch: Colors.blueGrey,
             scaffoldBackgroundColor: Colors.blueGrey[900]),
-        home: const HomePage(),
+        home: DefaultTabController(
+          length: 2,
+          child: Scaffold(
+            extendBodyBehindAppBar: true,
+            appBar: AppBar(
+              backgroundColor: Colors.transparent,
+              shadowColor: Colors.black,
+              elevation: 1,
+              title: const Center(
+                child: Text('Movie App'),
+              ),
+              automaticallyImplyLeading: false,
+              bottom: TabBar(
+                isScrollable: true,
+                tabs: [
+                  Text("Trending"),
+                  Tab(icon: Icon(Icons.directions_transit)),
+                ],
+              ),
+            ),
+            body: TabBarView(children: [
+              Trending(),
+              Trending(),
+            ]),
+          ),
+        ),
       );
     });
   }
