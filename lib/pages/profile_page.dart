@@ -64,9 +64,14 @@ class _ProfilePageState extends State<ProfilePage> {
                       textCapitalization: TextCapitalization.words,
                       decoration: const InputDecoration(
                           filled: true,
-                          icon: Icon(Icons.person),
+                          icon: Icon(
+                            Icons.person,
+                            color: Colors.white,
+                          ),
                           border: UnderlineInputBorder(),
+                          labelStyle: TextStyle(color: Colors.white),
                           labelText: 'Name'),
+                      style: TextStyle(color: Colors.white),
                     ),
                     SizedBox(
                       height: 14.h,
@@ -76,10 +81,15 @@ class _ProfilePageState extends State<ProfilePage> {
                       textInputAction: TextInputAction.next,
                       textCapitalization: TextCapitalization.words,
                       decoration: const InputDecoration(
+                          labelStyle: TextStyle(color: Colors.white),
                           filled: true,
-                          icon: Icon(Icons.person_pin),
+                          icon: Icon(
+                            Icons.person_pin,
+                            color: Colors.white,
+                          ),
                           border: UnderlineInputBorder(),
                           labelText: 'Username'),
+                      style: TextStyle(color: Colors.white),
                     ),
                     SizedBox(
                       height: 14.h,
@@ -89,10 +99,15 @@ class _ProfilePageState extends State<ProfilePage> {
                       textInputAction: TextInputAction.next,
                       textCapitalization: TextCapitalization.words,
                       decoration: const InputDecoration(
+                          labelStyle: TextStyle(color: Colors.white),
                           filled: true,
-                          icon: Icon(Icons.email_rounded),
+                          icon: Icon(
+                            Icons.email_rounded,
+                            color: Colors.white,
+                          ),
                           border: UnderlineInputBorder(),
                           labelText: 'Email'),
+                      style: TextStyle(color: Colors.white),
                     ),
                     SizedBox(
                       height: 14.h,
@@ -100,7 +115,10 @@ class _ProfilePageState extends State<ProfilePage> {
                     Center(
                       child: ElevatedButton(
                         onPressed: () {},
-                        child: Text('Submit'),
+                        child: const Text('Submit'),
+                        style: ButtonStyle(
+                            backgroundColor:
+                                MaterialStateProperty.all(Colors.blueAccent)),
                       ),
                     ),
                   ],
