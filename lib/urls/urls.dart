@@ -1,8 +1,22 @@
 import 'package:flutter/cupertino.dart';
 
 class MovieDB {
-  static String moviedb_url =
+  static String moviedb_trending_url =
       'https://api.themoviedb.org/3/trending/movie/week?api_key=ed59011d6c46d7a33abf946104590345';
+
+  static String moviedb_top_rated_url =
+      'https://api.themoviedb.org/3/movie/top_rated?api_key=ed59011d6c46d7a33abf946104590345';
+  static String moviedb_popular_url =
+      'https://api.themoviedb.org/3/movie/popular?api_key=ed59011d6c46d7a33abf946104590345';
+
+  static String moviedb_upcomming_url =
+      'https://api.themoviedb.org/3/movie/upcoming?api_key=ed59011d6c46d7a33abf946104590345';
+
+  static String moviedb_popular_tvshows_url =
+      'https://api.themoviedb.org/3/tv/popular?api_key=ed59011d6c46d7a33abf946104590345';
+
+  static String moviedb_top_rated_tvshows_url =
+      'https://api.themoviedb.org/3/tv/top_rated?api_key=ed59011d6c46d7a33abf946104590345';
 }
 
 class YouTube {

@@ -10,7 +10,7 @@ class ApiManager {
     var movieDataModel;
 
     try {
-      var url = Uri.parse(MovieDB.moviedb_url);
+      var url = Uri.parse(MovieDB.moviedb_trending_url);
       var response = await client.get(url);
       print('Response status: ${response.statusCode}');
       // print('Response body: ${response.body}');
