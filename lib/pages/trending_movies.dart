@@ -13,10 +13,10 @@ class Trending extends StatefulWidget {
 }
 
 class _TrendingState extends State<Trending> {
-  late Future<Movie?> _movieModel;
+  late Future<Movie?> _trendingMovieModel;
 
   void initState() {
-    _movieModel = ApiManager().getData();
+    _trendingMovieModel = ApiManager().getData();
     super.initState();
   }
 
@@ -26,7 +26,7 @@ class _TrendingState extends State<Trending> {
       children: <Widget>[
         Expanded(
           child: FutureBuilder<Movie?>(
-              future: _movieModel,
+              future: _trendingMovieModel,
               builder: (context, AsyncSnapshot snapshot) {
                 if (snapshot.data != null) {
                   return GridView.builder(

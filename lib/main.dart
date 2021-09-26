@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_movie_app/components/navigation_drawer.dart';
 import 'package:sizer/sizer.dart';
 import 'pages/trending_movies.dart';
 
@@ -24,10 +25,19 @@ class MyApp extends StatelessWidget {
             primarySwatch: Colors.blueGrey,
             scaffoldBackgroundColor: Colors.blueGrey[900]),
         home: DefaultTabController(
-          length: 2,
+          length: 5,
           child: Scaffold(
+            drawerEnableOpenDragGesture: false,
+            drawer: NavigationDrawer(),
             extendBodyBehindAppBar: true,
             appBar: AppBar(
+              leading: Builder(builder: (context) {
+                return IconButton(
+                    onPressed: () {
+                      Scaffold.of(context).openDrawer();
+                    },
+                    icon: Icon(Icons.menu));
+              }),
               backgroundColor: Colors.transparent,
               shadowColor: Colors.black,
               elevation: 1,
@@ -35,15 +45,38 @@ class MyApp extends StatelessWidget {
                 child: Text('Movie App'),
               ),
               automaticallyImplyLeading: false,
-              bottom: TabBar(
+              bottom: const TabBar(
                 isScrollable: true,
                 tabs: [
-                  Text("Trending"),
-                  Tab(icon: Icon(Icons.directions_transit)),
+                  Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Text(
+                      "Home",
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Text("Trending Movies"),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Text("Popular Movies"),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Text("Upcoming Movies"),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Text("Tv"),
+                  ),
                 ],
               ),
             ),
-            body: TabBarView(children: [
+            body: const TabBarView(children: [
+              Trending(),
+              Trending(),
+              Trending(),
               Trending(),
               Trending(),
             ]),
