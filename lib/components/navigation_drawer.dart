@@ -1,4 +1,5 @@
 import 'dart:ffi';
+import 'package:flutter_movie_app/pages/profile_page.dart';
 import 'package:sizer/sizer.dart';
 import 'package:flutter/material.dart';
 
@@ -40,6 +41,13 @@ class NavigationDrawer extends StatelessWidget {
                               child: CircleAvatar(
                                 radius: 7.h,
                                 backgroundColor: Colors.black,
+                                child: TextButton(
+                                    onPressed: () {
+                                      Navigator.pop(context);
+
+                                      Navigator.pushNamed(context, '/profile');
+                                    },
+                                    child: const Text('')),
                                 backgroundImage: NetworkImage(
                                     'https://images.unsplash.com/photo-1453728013993-6d66e9c9123a?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8dmlld3xlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80'),
                               ),
@@ -54,6 +62,23 @@ class NavigationDrawer extends StatelessWidget {
                             ),
                           ],
                         ),
+                      ),
+                    ),
+                    Container(
+                      child: ListTile(
+                        title: const Center(
+                            child: Text(
+                          'Home',
+                          style: TextStyle(color: Colors.white),
+                        )),
+                        subtitle: Divider(
+                          color: Colors.grey[200],
+                          height: 1,
+                        ),
+                        onTap: () {
+                          // Update the state of the app.
+                          Navigator.pop(context);
+                        },
                       ),
                     ),
                     Container(
