@@ -4,6 +4,7 @@ import 'package:flutter_movie_app/components/movie_card.dart';
 import 'package:flutter_movie_app/components/tvshow_card.dart';
 import 'package:flutter_movie_app/models/movie_data.dart';
 import 'package:flutter_movie_app/models/tv_show.dart';
+import 'package:flutter_movie_app/pages/tvshow_details_page.dart';
 import 'package:flutter_movie_app/services/api_manager.dart';
 import 'package:flutter_movie_app/urls/urls.dart';
 import '../pages/movie_details_page.dart';
@@ -48,10 +49,10 @@ class _TvShowsState extends State<TvShows> {
                         child: TextButton(
                           child: TvShowCard(tvShow),
                           onPressed: () {
-                            // Navigator.push(context,
-                            //     MaterialPageRoute(builder: (context) {
-                            //   return MovieDetailsPage(tvShow);
-                            // }));
+                            Navigator.push(context,
+                                MaterialPageRoute(builder: (context) {
+                              return TvShowDetailsPage(tvShow);
+                            }));
                           },
                         ),
                       );
