@@ -5,7 +5,7 @@ import 'package:flutter_movie_app/pages/profile_page.dart';
 import 'package:sizer/sizer.dart';
 
 void main() {
-  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
     statusBarColor: Colors.transparent,
     systemNavigationBarColor: Colors.transparent,
   ));
