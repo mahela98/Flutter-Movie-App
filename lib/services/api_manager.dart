@@ -5,12 +5,13 @@ import '../urls/urls.dart';
 import '../models/youtube_video_details.dart';
 
 class ApiManager {
-  Future<Movie?> getData() async {
+  //get data from movie urls
+  Future<Movie?> getMovieData(String movieUrl) async {
     var client = http.Client();
     var movieDataModel;
-
+    print(movieUrl);
     try {
-      var url = Uri.parse(MovieDB.moviedb_trending_url);
+      var url = Uri.parse(movieUrl);
       var response = await client.get(url);
       print('Response status: ${response.statusCode}');
       // print('Response body: ${response.body}');

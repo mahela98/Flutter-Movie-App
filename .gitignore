@@ -1,3 +1,9 @@
+lib/urls/
+./README.md
+
+
+
+
 # Miscellaneous
 *.class
 *.log
@@ -11,8 +17,7 @@
 
 lib\urls
 
-lib\urls\urls.dart
-.README.md
+
 
 # IntelliJ related
 *.iml

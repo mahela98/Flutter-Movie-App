@@ -3,11 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_movie_app/components/movie_card.dart';
 import 'package:flutter_movie_app/models/movie_data.dart';
 import 'package:flutter_movie_app/services/api_manager.dart';
+import 'package:flutter_movie_app/urls/urls.dart';
 import './movie_details_page.dart';
 
 class Trending extends StatefulWidget {
-  const Trending({Key? key}) : super(key: key);
-
+  final movieUrl;
+  Trending(this.movieUrl);
   @override
   _TrendingState createState() => _TrendingState();
 }
@@ -16,7 +17,7 @@ class _TrendingState extends State<Trending> {
   late Future<Movie?> _trendingMovieModel;
 
   void initState() {
-    _trendingMovieModel = ApiManager().getData();
+    _trendingMovieModel = ApiManager().getMovieData(widget.movieUrl);
     super.initState();
   }
 

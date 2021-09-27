@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_movie_app/components/navigation_drawer.dart';
+import 'package:flutter_movie_app/models/movie_data.dart';
+import 'package:flutter_movie_app/urls/urls.dart';
 import 'package:sizer/sizer.dart';
-import 'trending_movies.dart';
+import 'tab_movies.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -51,7 +53,7 @@ class _HomePageState extends State<HomePage> {
               ),
               Padding(
                 padding: EdgeInsets.all(8.0),
-                child: Text("Popular Movies"),
+                child: Text("Top Rated Movies"),
               ),
               Padding(
                 padding: EdgeInsets.all(8.0),
@@ -64,12 +66,12 @@ class _HomePageState extends State<HomePage> {
             ],
           ),
         ),
-        body: const TabBarView(children: [
-          Trending(),
-          Trending(),
-          Trending(),
-          Trending(),
-          Trending(),
+        body: TabBarView(children: [
+          Trending(MovieDB.moviedb_trending_movie_url),
+          Trending(MovieDB.moviedb_trending_movie_url),
+          Trending(MovieDB.moviedb_top_rated_movie_url),
+          Trending(MovieDB.moviedb_upcomming_movie_url),
+          Trending(MovieDB.moviedb_trending_movie_url),
         ]),
       ),
     );
