@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_movie_app/components/navigation_drawer.dart';
+import 'package:flutter_movie_app/components/tab_tv_shows.dart';
 import 'package:flutter_movie_app/models/movie_data.dart';
 import 'package:flutter_movie_app/urls/urls.dart';
 import 'package:sizer/sizer.dart';
-import 'tab_movies.dart';
+import '../components/tab_movies.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -17,7 +18,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 5,
+      length: 6,
       child: Scaffold(
         drawerEnableOpenDragGesture: false,
         endDrawer: NavigationDrawer(),
@@ -61,7 +62,11 @@ class _HomePageState extends State<HomePage> {
               ),
               Padding(
                 padding: EdgeInsets.all(8.0),
-                child: Text("Tv"),
+                child: Text("Popular Tv Shows"),
+              ),
+              Padding(
+                padding: EdgeInsets.all(8.0),
+                child: Text("Top Tv Shows"),
               ),
             ],
           ),
@@ -71,7 +76,8 @@ class _HomePageState extends State<HomePage> {
           Trending(MovieDB.moviedb_trending_movie_url),
           Trending(MovieDB.moviedb_top_rated_movie_url),
           Trending(MovieDB.moviedb_upcomming_movie_url),
-          Trending(MovieDB.moviedb_trending_movie_url),
+          TvShows(MovieDB.moviedb_popular_tvshows_url),
+          TvShows(MovieDB.moviedb_top_rated_tvshows_url),
         ]),
       ),
     );

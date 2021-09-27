@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_movie_app/components/youtube_video.dart';
-import 'package:flutter_movie_app/components/youtube_video_to_homepage.dart';
+import 'package:flutter_movie_app/components/youtube_video/youtube_video.dart';
+import 'package:flutter_movie_app/components/youtube_video/youtube_video_to_details_page.dart';
 import 'package:sizer/sizer.dart';
 import 'package:intl/intl.dart';
 

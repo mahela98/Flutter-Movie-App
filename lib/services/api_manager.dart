@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:flutter_movie_app/models/tv_show.dart';
 import 'package:http/http.dart' as http;
 import '../models/movie_data.dart';
 import '../urls/urls.dart';
@@ -29,6 +30,30 @@ class ApiManager {
     return movieDataModel;
   }
 
+  Future<TvShowsData?> getTvShowData(String tvShowUrl) async {
+    var client = http.Client();
+    var tvShowDataModel;
+    print(tvShowUrl);
+    try {
+      var url = Uri.parse(tvShowUrl);
+      var response = await client.get(url);
+      print('Response status: ${response.statusCode}');
+      // print('Response body: ${response.body}');
+
+      if (response.statusCode == 200) {
+        var jsonString = response.body;
+        // print(jsonString);
+        var jsonMap = await json.decode(jsonString);
+        tvShowDataModel = TvShowsData.fromJson(jsonMap);
+      }
+    } catch (e) {
+      print('Error _ : $e');
+      return tvShowDataModel;
+    }
+    return tvShowDataModel;
+  }
+
+//gets data from youtube
   Future<YoutubeVideoDetails?> getVideoData(String moviename) async {
     var client = http.Client();
     var youtubeDataModel;

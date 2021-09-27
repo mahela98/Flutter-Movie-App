@@ -1,23 +1,25 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_movie_app/components/movie_card.dart';
+import 'package:flutter_movie_app/components/tvshow_card.dart';
 import 'package:flutter_movie_app/models/movie_data.dart';
+import 'package:flutter_movie_app/models/tv_show.dart';
 import 'package:flutter_movie_app/services/api_manager.dart';
 import 'package:flutter_movie_app/urls/urls.dart';
-import './movie_details_page.dart';
+import '../pages/movie_details_page.dart';
 
-class Trending extends StatefulWidget {
-  final movieUrl;
-  Trending(this.movieUrl);
+class TvShows extends StatefulWidget {
+  final tvshowUrl;
+  TvShows(this.tvshowUrl);
   @override
-  _TrendingState createState() => _TrendingState();
+  _TvShowsState createState() => _TvShowsState();
 }
 
-class _TrendingState extends State<Trending> {
-  late Future<Movie?> _trendingMovieModel;
+class _TvShowsState extends State<TvShows> {
+  late Future<TvShowsData?> _tvShowModel;
 
   void initState() {
-    _trendingMovieModel = ApiManager().getMovieData(widget.movieUrl);
+    _tvShowModel = ApiManager().getTvShowData(widget.tvshowUrl);
     super.initState();
   }
 
@@ -26,8 +28,8 @@ class _TrendingState extends State<Trending> {
     return Row(
       children: <Widget>[
         Expanded(
-          child: FutureBuilder<Movie?>(
-              future: _trendingMovieModel,
+          child: FutureBuilder<TvShowsData?>(
+              future: _tvShowModel,
               builder: (context, AsyncSnapshot snapshot) {
                 if (snapshot.data != null) {
                   return GridView.builder(
@@ -40,16 +42,16 @@ class _TrendingState extends State<Trending> {
                     ),
                     // scrollDirection: Axis.horizontal,
                     itemBuilder: (context, index) {
-                      var movie = snapshot.data!.results[index];
+                      var tvShow = snapshot.data!.results[index];
                       return Padding(
                         padding: const EdgeInsets.all(0),
                         child: TextButton(
-                          child: MovieCard(movie),
+                          child: TvShowCard(tvShow),
                           onPressed: () {
-                            Navigator.push(context,
-                                MaterialPageRoute(builder: (context) {
-                              return MovieDetailsPage(movie);
-                            }));
+                            // Navigator.push(context,
+                            //     MaterialPageRoute(builder: (context) {
+                            //   return MovieDetailsPage(tvShow);
+                            // }));
                           },
                         ),
                       );

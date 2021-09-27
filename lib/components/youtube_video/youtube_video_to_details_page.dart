@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_movie_app/components/youtube_video.dart';
+import 'package:flutter_movie_app/components/youtube_video/youtube_video.dart';
 import 'package:sizer/sizer.dart';
 
 class YoutubeVideoToDetailsPage extends StatefulWidget {
