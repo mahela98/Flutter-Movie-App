@@ -24,6 +24,12 @@ class _TvShowsState extends State<TvShows> {
     super.initState();
   }
 
+  Future<TvShowsData?> reloadData() {
+    return Future.delayed(const Duration(seconds: 1), () {
+      _tvShowModel = ApiManager().getTvShowData(widget.tvshowUrl);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -33,30 +39,33 @@ class _TvShowsState extends State<TvShows> {
               future: _tvShowModel,
               builder: (context, AsyncSnapshot snapshot) {
                 if (snapshot.data != null) {
-                  return GridView.builder(
-                    shrinkWrap: true,
-                    itemCount: snapshot.data!.results.length,
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                      childAspectRatio: 5.5 / 10.0,
-                      crossAxisCount: 2,
+                  return RefreshIndicator(
+                    onRefresh: reloadData,
+                    child: GridView.builder(
+                      shrinkWrap: true,
+                      itemCount: snapshot.data!.results.length,
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                        childAspectRatio: 5.5 / 10.0,
+                        crossAxisCount: 2,
+                      ),
+                      // scrollDirection: Axis.horizontal,
+                      itemBuilder: (context, index) {
+                        var tvShow = snapshot.data!.results[index];
+                        return Padding(
+                          padding: const EdgeInsets.all(0),
+                          child: TextButton(
+                            child: TvShowCard(tvShow),
+                            onPressed: () {
+                              Navigator.push(context,
+                                  MaterialPageRoute(builder: (context) {
+                                return TvShowDetailsPage(tvShow);
+                              }));
+                            },
+                          ),
+                        );
+                      },
                     ),
-                    // scrollDirection: Axis.horizontal,
-                    itemBuilder: (context, index) {
-                      var tvShow = snapshot.data!.results[index];
-                      return Padding(
-                        padding: const EdgeInsets.all(0),
-                        child: TextButton(
-                          child: TvShowCard(tvShow),
-                          onPressed: () {
-                            Navigator.push(context,
-                                MaterialPageRoute(builder: (context) {
-                              return TvShowDetailsPage(tvShow);
-                            }));
-                          },
-                        ),
-                      );
-                    },
                   );
                 } else {
                   return const Center(child: CircularProgressIndicator());

@@ -37,7 +37,7 @@ class _HomePageState extends State<HomePage> {
           //       icon: Icon(Icons.menu));
           // }),
           leading: Icon(Icons.search_outlined),
-          backgroundColor: Colors.transparent,
+          backgroundColor: Colors.black.withOpacity(0.6),
           shadowColor: Colors.black,
           elevation: 1,
           title: const Center(
