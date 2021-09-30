@@ -22,8 +22,9 @@ class MyApp extends StatelessWidget {
       return MaterialApp(
         title: 'Movie App',
         theme: ThemeData(
-            primarySwatch: Colors.blueGrey,
-            scaffoldBackgroundColor: Colors.blueGrey[900]),
+          brightness: Brightness.dark,
+          scaffoldBackgroundColor: Colors.blueGrey[900],
+        ),
         initialRoute: '/',
         routes: {
           '/': (context) => const HomePage(),

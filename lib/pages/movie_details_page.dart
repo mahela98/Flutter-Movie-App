@@ -34,7 +34,6 @@ class _MovieDetailsPageState extends State<MovieDetailsPage> {
               title: Text(
                 widget.movie.title,
                 textAlign: TextAlign.start,
-                style: TextStyle(),
               ),
               background: Container(
                 decoration: BoxDecoration(
@@ -65,7 +64,8 @@ class _MovieDetailsPageState extends State<MovieDetailsPage> {
                             width: 4.sp,
                             color: Colors.lightGreenAccent,
                           ),
-                          borderRadius: BorderRadius.circular(100),
+                          // borderRadius: BorderRadius.circular(100),
+                          shape: BoxShape.circle,
                         ),
                         child: Column(
                           children: [
