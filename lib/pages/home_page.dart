@@ -21,7 +21,12 @@ class _HomePageState extends State<HomePage> {
       length: 6,
       child: Scaffold(
         drawerEnableOpenDragGesture: false,
-        endDrawer: NavigationDrawer(),
+        endDrawer: Theme(
+          child: NavigationDrawer(),
+          data: Theme.of(context).copyWith(
+            canvasColor: Colors.transparent,
+          ),
+        ),
         extendBodyBehindAppBar: true,
         appBar: AppBar(
           // leading: Builder(builder: (context) {

@@ -11,9 +11,21 @@ class NavigationDrawer extends StatelessWidget {
     return Container(
       width: 75.w,
       child: Drawer(
-        elevation: 1,
+        elevation: 16.0,
         child: Container(
-          decoration: BoxDecoration(color: Colors.blueGrey[900]),
+          decoration: BoxDecoration(
+            // color: Colors.black.withOpacity(0.7),
+            // backgroundBlendMode: BlendMode.hardLight,
+
+            gradient: LinearGradient(
+              begin: Alignment.topRight,
+              end: Alignment.bottomLeft,
+              colors: [
+                Colors.indigo.withOpacity(0.9),
+                Colors.black54.withOpacity(0.9),
+              ],
+            ),
+          ),
           child: Column(
             children: [
               Expanded(
@@ -23,15 +35,8 @@ class NavigationDrawer extends StatelessWidget {
                   children: [
                     DrawerHeader(
                       padding: EdgeInsets.all(10),
-                      decoration: const BoxDecoration(
-                        gradient: LinearGradient(
-                          begin: Alignment.topRight,
-                          end: Alignment.bottomLeft,
-                          colors: [
-                            Colors.amberAccent,
-                            Colors.red,
-                          ],
-                        ),
+                      decoration: BoxDecoration(
+                        color: Colors.black.withOpacity(0.8),
                         //color: Colors.amberAccent[700],
                       ),
                       child: Container(
@@ -58,7 +63,9 @@ class NavigationDrawer extends StatelessWidget {
                             Text(
                               'User Name',
                               style: TextStyle(
-                                  fontSize: 12.sp, fontWeight: FontWeight.bold),
+                                  color: Colors.white,
+                                  fontSize: 12.sp,
+                                  fontWeight: FontWeight.bold),
                             ),
                           ],
                         ),
@@ -140,12 +147,14 @@ class NavigationDrawer extends StatelessWidget {
                 flex: 1,
                 child: Container(
                   width: 100.h,
-                  color: Colors.amberAccent,
+                  color: Colors.transparent,
                   child: Center(
                     child: Text(
                       "EACMS Products",
                       style: TextStyle(
-                          fontSize: 8.sp, fontWeight: FontWeight.w200),
+                          color: Colors.white,
+                          fontSize: 8.sp,
+                          fontWeight: FontWeight.w200),
                     ),
                   ),
                 ),
