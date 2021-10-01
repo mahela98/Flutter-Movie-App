@@ -16,11 +16,11 @@ class _ProfilePageState extends State<ProfilePage> {
     SizedBox sizedBoxSpace = SizedBox(height: 5.h);
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      drawerEnableOpenDragGesture: false,
-      endDrawer: NavigationDrawer(),
+      // drawerEnableOpenDragGesture: false,
+      // endDrawer: NavigationDrawer(),
       extendBodyBehindAppBar: true,
       appBar: AppBar(
-        title: Center(child: Text('Profile')),
+        title: Text('Profile'),
         backgroundColor: Colors.transparent,
         shadowColor: Colors.black,
         elevation: 1,

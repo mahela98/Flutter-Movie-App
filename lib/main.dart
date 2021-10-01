@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_movie_app/pages/about_page.dart';
+import 'package:flutter_movie_app/pages/contact_page.dart';
 import 'package:flutter_movie_app/pages/home_page.dart';
 import 'package:flutter_movie_app/pages/profile_page.dart';
 import 'package:sizer/sizer.dart';
@@ -20,6 +22,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return Sizer(builder: (context, orientation, deviceType) {
       return MaterialApp(
+        debugShowCheckedModeBanner: false,
         title: 'Movie App',
         theme: ThemeData(
           brightness: Brightness.dark,
@@ -29,6 +32,8 @@ class MyApp extends StatelessWidget {
         routes: {
           '/': (context) => const HomePage(),
           '/profile': (context) => const ProfilePage(),
+          '/about': (context) => const AboutPage(),
+          '/contact': (context) => const ContactPage(),
         },
       );
     });
