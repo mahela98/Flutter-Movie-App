@@ -77,7 +77,7 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
         body: TabBarView(children: [
-          Trending(MovieDB.moviedb_trending_movie_url),
+          Trending(MovieDB.moviedb_search_movie_url),
           Trending(MovieDB.moviedb_trending_movie_url),
           Trending(MovieDB.moviedb_top_rated_movie_url),
           Trending(MovieDB.moviedb_upcomming_movie_url),

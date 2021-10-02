@@ -75,16 +75,24 @@ class Result {
   factory Result.fromJson(Map<String, dynamic> json) => Result(
         genreIds: List<int>.from(json["genre_ids"].map((x) => x)),
         // originalLanguage: originalLanguageValues.map[json["original_language"]],
-        originalTitle: json["original_title"],
-        posterPath: json["poster_path"],
-        video: json["video"],
-        voteAverage: json["vote_average"].toDouble(),
-        title: json["title"],
-        overview: json["overview"],
-        releaseDate: DateTime.parse(json["release_date"]),
+        originalTitle: json["original_title"] ?? "",
+        posterPath: json["poster_path"] ?? "/phSfZMHoBVBUUyBw4uqBzKQNRFn.jpg",
+        video: json["video"] ?? "",
+        voteAverage: json["vote_average"].toDouble() ?? 0,
+        title: json["title"] ?? "",
+        overview: json["overview"] ?? "",
+        releaseDate: (json["release_date"] == null)
+            ? DateTime.parse("1985-04-10")
+            : (json["release_date"] == "")
+                ? DateTime.parse("1985-04-10")
+                : DateTime.parse(json["release_date"]),
         voteCount: json["vote_count"],
         adult: json["adult"],
-        backdropPath: json["backdrop_path"],
+        backdropPath: (json["backdrop_path"] == null)
+            ? "/phSfZMHoBVBUUyBw4uqBzKQNRFn.jpg"
+            : (json["backdrop_path"] == "")
+                ? "/phSfZMHoBVBUUyBw4uqBzKQNRFn.jpg"
+                : json["backdrop_path"],
         id: json["id"],
         popularity: json["popularity"].toDouble(),
         // mediaType: mediaTypeValues.map[json["media_type"]],
