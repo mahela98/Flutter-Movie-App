@@ -139,6 +139,7 @@ class NavigationDrawer extends StatelessWidget {
                         onTap: () {
                           // Update the state of the app.
                           Navigator.pop(context);
+                          Navigator.pushNamed(context, '/search');
                         },
                       ),
                     ),

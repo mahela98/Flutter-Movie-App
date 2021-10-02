@@ -21,7 +21,7 @@ class _HomePageState extends State<HomePage> {
       length: 6,
       child: Scaffold(
         drawerEnableOpenDragGesture: false,
-        endDrawer: Theme(
+        drawer: Theme(
           child: NavigationDrawer(),
           data: Theme.of(context).copyWith(
             canvasColor: Colors.transparent,
@@ -29,14 +29,20 @@ class _HomePageState extends State<HomePage> {
         ),
         extendBodyBehindAppBar: true,
         appBar: AppBar(
-          // leading: Builder(builder: (context) {
-          //   return IconButton(
-          //       onPressed: () {
-          //         Scaffold.of(context).openDrawer();
-          //       },
-          //       icon: Icon(Icons.menu));
-          // }),
-          leading: Icon(Icons.search_outlined),
+          actions: [
+            IconButton(
+              onPressed: () {},
+              icon: const Icon(Icons.search),
+            )
+          ],
+          leading: Builder(builder: (context) {
+            return IconButton(
+                onPressed: () {
+                  Scaffold.of(context).openDrawer();
+                },
+                icon: Icon(Icons.menu));
+          }),
+          // leading: Icon(Icons.search_outlined),
           backgroundColor: Colors.black.withOpacity(0.6),
           shadowColor: Colors.black,
           elevation: 1,

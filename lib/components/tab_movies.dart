@@ -24,7 +24,7 @@ class _TrendingState extends State<Trending> {
   }
 
   Future<Movie?> reloadData() {
-    return Future.delayed(const Duration(seconds: 1), () {
+    return Future.delayed(const Duration(seconds: 2), () {
       _trendingMovieModel = ApiManager().getMovieData(widget.movieUrl);
     });
   }

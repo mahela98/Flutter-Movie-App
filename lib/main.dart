@@ -4,6 +4,7 @@ import 'package:flutter_movie_app/pages/about_page.dart';
 import 'package:flutter_movie_app/pages/contact_page.dart';
 import 'package:flutter_movie_app/pages/home_page.dart';
 import 'package:flutter_movie_app/pages/profile_page.dart';
+import 'package:flutter_movie_app/pages/search.dart';
 import 'package:sizer/sizer.dart';
 
 void main() {
@@ -34,6 +35,7 @@ class MyApp extends StatelessWidget {
           '/profile': (context) => const ProfilePage(),
           '/about': (context) => const AboutPage(),
           '/contact': (context) => const ContactPage(),
+          '/search': (context) => const Search(),
         },
       );
     });
