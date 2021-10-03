@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
           '/profile': (context) => const ProfilePage(),
           '/about': (context) => const AboutPage(),
           '/contact': (context) => const ContactPage(),
-          '/search': (context) => const Search(),
+          // '/search': (context) =>  Search(quary),
         },
       );
     });

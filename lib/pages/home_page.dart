@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_movie_app/components/navigation_drawer.dart';
 import 'package:flutter_movie_app/components/tab_tv_shows.dart';
 import 'package:flutter_movie_app/models/movie_data.dart';
+import 'package:flutter_movie_app/pages/search.dart';
 import 'package:flutter_movie_app/urls/urls.dart';
 import 'package:sizer/sizer.dart';
 import '../components/tab_movies.dart';
@@ -38,6 +39,10 @@ class _HomePageState extends State<HomePage> {
                   valueText = value;
                 });
                 Navigator.pop(context);
+
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return Search(valueText);
+                }));
               },
               controller: _textFieldController,
               decoration: InputDecoration(hintText: "Movie Name"),
@@ -56,13 +61,20 @@ class _HomePageState extends State<HomePage> {
               TextButton(
                 // color: Colors.green,
                 // textColor: Colors.white,
-                child: Text('OK'),
+                child: Text('Search'),
                 onPressed: () {
                   print(valueText);
                   setState(() {
                     codeDialog = valueText;
-                    Navigator.pop(context);
-                    Navigator.pushNamed(context, '/contact');
+                    if (valueText == '') {
+                    } else {
+                      Navigator.pop(context);
+
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
+                        return Search(valueText);
+                      }));
+                    }
                   });
                 },
               ),
@@ -139,7 +151,7 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
         body: TabBarView(children: [
-          Trending(MovieDB.moviedb_search_movie_url),
+          Trending(MovieDB.moviedb_trending_movie_url),
           Trending(MovieDB.moviedb_trending_movie_url),
           Trending(MovieDB.moviedb_top_rated_movie_url),
           Trending(MovieDB.moviedb_upcomming_movie_url),
