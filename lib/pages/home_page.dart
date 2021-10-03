@@ -25,57 +25,67 @@ class _HomePageState extends State<HomePage> {
         context: context,
         builder: (context) {
           return AlertDialog(
-            title: Text('Search'),
-            content: TextField(
-              textInputAction: TextInputAction.search,
-              autofocus: true,
-              onChanged: (value) {
-                setState(() {
-                  valueText = value;
-                });
-              },
-              onSubmitted: (value) {
-                setState(() {
-                  valueText = value;
-                });
-                Navigator.pop(context);
-
-                Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return Search(valueText);
-                }));
-              },
-              controller: _textFieldController,
-              decoration: InputDecoration(hintText: "Movie Name"),
+            title: const Text('Search'),
+            content: Expanded(
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    TextField(
+                      textInputAction: TextInputAction.search,
+                      autofocus: true,
+                      onChanged: (value) {
+                        valueText = value;
+                      },
+                      onSubmitted: (value) {
+                        valueText = value;
+                        value = '';
+                        _textFieldController.clear();
+                        if (valueText == '') {
+                          print('empty');
+                        } else if (valueText.replaceAll(' ', '') == '') {
+                          print('empty');
+                        } else {
+                          Navigator.pop(context);
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) {
+                            return Search(valueText);
+                          }));
+                        }
+                      },
+                      controller: _textFieldController,
+                      decoration: InputDecoration(hintText: "Movie Name"),
+                    ),
+                  ],
+                ),
+              ),
             ),
             actions: <Widget>[
-              FlatButton(
-                color: Colors.red,
-                textColor: Colors.white,
-                child: Text('CANCEL'),
-                onPressed: () {
-                  setState(() {
-                    Navigator.pop(context);
-                  });
-                },
-              ),
+              // FlatButton(
+              //   color: Colors.red,
+              //   textColor: Colors.white,
+              //   child: Text('CANCEL'),
+              //   onPressed: () {
+              //     setState(() {
+              //       Navigator.pop(context);
+              //     });
+              //   },
+              // ),
               TextButton(
-                // color: Colors.green,
-                // textColor: Colors.white,
                 child: Text('Search'),
                 onPressed: () {
                   print(valueText);
-                  setState(() {
-                    codeDialog = valueText;
-                    if (valueText == '') {
-                    } else {
-                      Navigator.pop(context);
-
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) {
-                        return Search(valueText);
-                      }));
-                    }
-                  });
+                  _textFieldController.clear();
+                  if (valueText == '') {
+                    print('empty');
+                  } else if (valueText.replaceAll(' ', '') == '') {
+                    print('empty');
+                  } else {
+                    Navigator.pop(context);
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) {
+                      return Search(valueText);
+                    }));
+                  }
                 },
               ),
             ],
@@ -99,7 +109,9 @@ class _HomePageState extends State<HomePage> {
         appBar: AppBar(
           actions: [
             IconButton(
-              onPressed: () {},
+              onPressed: () {
+                _displayTextInputDialog(context);
+              },
               icon: const Icon(Icons.search),
             )
           ],
@@ -159,11 +171,16 @@ class _HomePageState extends State<HomePage> {
           TvShows(MovieDB.moviedb_top_rated_tvshows_url),
         ]),
         floatingActionButton: FloatingActionButton(
+          elevation: 5,
           onPressed: () {
             _displayTextInputDialog(context);
           },
-          child: const Icon(Icons.search),
-          backgroundColor: Colors.green,
+          child: const Icon(
+            Icons.search,
+            color: Colors.white,
+          ),
+          backgroundColor: const Color(0xff03dac6),
+          foregroundColor: Colors.black,
         ),
       ),
     );

@@ -16,6 +16,7 @@ class _SearchState extends State<Search> {
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
+        // leading: IconButton(onPressed: () {}, icon: Icon(Icons.arrow_back)),
         backgroundColor: Colors.black.withOpacity(0.6),
         shadowColor: Colors.black,
         elevation: 1,
