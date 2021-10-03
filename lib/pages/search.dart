@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_movie_app/components/tab_movies.dart';
 import 'package:flutter_movie_app/urls/urls.dart';
-import 'package:material_floating_search_bar/material_floating_search_bar.dart';
 
 class Search extends StatefulWidget {
   const Search({Key? key}) : super(key: key);
@@ -11,70 +10,114 @@ class Search extends StatefulWidget {
 }
 
 class _SearchState extends State<Search> {
-  @override
-  Widget build(BuildContext context) {
-    String queryText = '-';
-    bool isSearchViewClicked = true;
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.deepOrange,
-        title: isSearchViewClicked
-            ? TextField(
-                style: TextStyle(color: Colors.white),
-                onSubmitted: (value) {
-                  isSearchViewClicked = false;
+  final myController = TextEditingController();
+  TextEditingController _textFieldController = TextEditingController();
+  String codeDialog = '';
+  String valueText = '';
 
+  @override
+  void dispose() {
+    // Clean up the controller when the widget is disposed.
+    myController.dispose();
+    super.dispose();
+  }
+
+  Future<void> _displayTextInputDialog(BuildContext context) async {
+    return showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: Text('Search'),
+            content: TextField(
+              textInputAction: TextInputAction.search,
+              autofocus: true,
+              onChanged: (value) {
+                setState(() {
+                  valueText = value;
+                });
+              },
+              controller: _textFieldController,
+              decoration: InputDecoration(hintText: "Text Field in Dialog"),
+            ),
+            actions: <Widget>[
+              FlatButton(
+                color: Colors.red,
+                textColor: Colors.white,
+                child: Text('CANCEL'),
+                onPressed: () {
                   setState(() {
-                    queryText = value;
+                    Navigator.pop(context);
+                    Navigator.pop(context);
                   });
                 },
-                textInputAction: TextInputAction.search,
-                decoration: InputDecoration(
-                  border: InputBorder.none,
-                  hintText: 'Search',
-                  hintStyle: TextStyle(color: Colors.white70),
-                  icon: IconButton(
-                    icon: Icon(
-                      Icons.arrow_back,
-                      color: Colors.white,
-                    ),
-                    onPressed: () {
-                      setState(() {
-                        isSearchViewClicked = false;
-                      });
-                    },
-                  ),
-                ),
-                autofocus: true,
-                cursorColor: Colors.black,
-              )
-            : Text(
-                'Material Search',
-                style: TextStyle(color: Colors.white),
               ),
-        actions: <Widget>[
+              TextButton(
+                // color: Colors.green,
+                // textColor: Colors.white,
+                child: Text('OK'),
+                onPressed: () {
+                  print(valueText);
+                  setState(() {
+                    codeDialog = valueText;
+                    Navigator.pop(context);
+                    Navigator.pushNamed(context, '/contact');
+                  });
+                },
+              ),
+            ],
+          );
+        });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    String queryText = '';
+
+    return Scaffold(
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(
+        backgroundColor: Colors.black.withOpacity(0.7),
+        title: TextField(
+          style: TextStyle(color: Colors.white),
+          controller: myController,
+          // onSubmitted: (value) {
+          //   print(queryText);
+          //   setState(() {
+          //     queryText = value;
+          //   });
+          //   print(queryText);
+          // },
+          textInputAction: TextInputAction.search,
+          decoration: const InputDecoration(
+            border: InputBorder.none,
+            hintText: 'Search',
+            hintStyle: TextStyle(color: Colors.white70),
+          ),
+          // autofocus: true,
+          cursorColor: Colors.white,
+        ),
+        actions: [
           IconButton(
-            icon: isSearchViewClicked
-                ? Icon(
-                    Icons.close,
-                    color: Colors.white,
-                  )
-                : Icon(
-                    Icons.search,
-                    color: Colors.white,
-                  ),
-            onPressed: () {
-              //show search bar
-              setState(() {
-                if (isSearchViewClicked) {
-                  isSearchViewClicked = false;
-                } else {
-                  isSearchViewClicked = true;
-                }
-              });
-            },
-          )
+              onPressed: () {
+                showDialog(
+                    context: context,
+                    builder: (context) {
+                      print(myController.text);
+                      return Trending(MovieDB.moviedb_search_movie_url);
+                    });
+              },
+              icon: Icon(Icons.search_outlined))
         ],
+      ),
+      body: Center(
+        child: TextButton(
+          // color: Colors.teal,
+          // textColor: Colors.white,
+          onPressed: () {
+            _displayTextInputDialog(context);
+          },
+          child: Text('Press For Alert'),
+        ),
       ),
     );
   }

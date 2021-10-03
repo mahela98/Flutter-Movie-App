@@ -15,6 +15,62 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  TextEditingController _textFieldController = TextEditingController();
+  String codeDialog = '';
+  String valueText = '';
+
+  Future<void> _displayTextInputDialog(BuildContext context) async {
+    return showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: Text('Search'),
+            content: TextField(
+              textInputAction: TextInputAction.search,
+              autofocus: true,
+              onChanged: (value) {
+                setState(() {
+                  valueText = value;
+                });
+              },
+              onSubmitted: (value) {
+                setState(() {
+                  valueText = value;
+                });
+                Navigator.pop(context);
+              },
+              controller: _textFieldController,
+              decoration: InputDecoration(hintText: "Movie Name"),
+            ),
+            actions: <Widget>[
+              FlatButton(
+                color: Colors.red,
+                textColor: Colors.white,
+                child: Text('CANCEL'),
+                onPressed: () {
+                  setState(() {
+                    Navigator.pop(context);
+                  });
+                },
+              ),
+              TextButton(
+                // color: Colors.green,
+                // textColor: Colors.white,
+                child: Text('OK'),
+                onPressed: () {
+                  print(valueText);
+                  setState(() {
+                    codeDialog = valueText;
+                    Navigator.pop(context);
+                    Navigator.pushNamed(context, '/contact');
+                  });
+                },
+              ),
+            ],
+          );
+        });
+  }
+
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -90,6 +146,13 @@ class _HomePageState extends State<HomePage> {
           TvShows(MovieDB.moviedb_popular_tvshows_url),
           TvShows(MovieDB.moviedb_top_rated_tvshows_url),
         ]),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            _displayTextInputDialog(context);
+          },
+          child: const Icon(Icons.search),
+          backgroundColor: Colors.green,
+        ),
       ),
     );
   }
