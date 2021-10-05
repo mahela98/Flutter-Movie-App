@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_movie_app/components/home_tab.dart';
+import 'package:flutter_movie_app/components/home_tab/home_tab.dart';
 import 'package:flutter_movie_app/components/navigation_drawer.dart';
 import 'package:flutter_movie_app/components/tab_tv_shows.dart';
 import 'package:flutter_movie_app/models/movie_data.dart';
@@ -27,37 +27,35 @@ class _HomePageState extends State<HomePage> {
         builder: (context) {
           return AlertDialog(
             title: const Text('Search'),
-            content: Expanded(
-              child: SingleChildScrollView(
-                child: Column(
-                  children: [
-                    TextField(
-                      textInputAction: TextInputAction.search,
-                      autofocus: true,
-                      onChanged: (value) {
-                        valueText = value;
-                      },
-                      onSubmitted: (value) {
-                        valueText = value;
-                        value = '';
-                        _textFieldController.clear();
-                        if (valueText == '') {
-                          print('empty');
-                        } else if (valueText.replaceAll(' ', '') == '') {
-                          print('empty');
-                        } else {
-                          Navigator.pop(context);
-                          Navigator.push(context,
-                              MaterialPageRoute(builder: (context) {
-                            return Search(valueText);
-                          }));
-                        }
-                      },
-                      controller: _textFieldController,
-                      decoration: InputDecoration(hintText: "Movie Name"),
-                    ),
-                  ],
-                ),
+            content: SingleChildScrollView(
+              child: Column(
+                children: [
+                  TextField(
+                    textInputAction: TextInputAction.search,
+                    autofocus: true,
+                    onChanged: (value) {
+                      valueText = value;
+                    },
+                    onSubmitted: (value) {
+                      valueText = value;
+                      value = '';
+                      _textFieldController.clear();
+                      if (valueText == '') {
+                        print('empty');
+                      } else if (valueText.replaceAll(' ', '') == '') {
+                        print('empty');
+                      } else {
+                        Navigator.pop(context);
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) {
+                          return Search(valueText);
+                        }));
+                      }
+                    },
+                    controller: _textFieldController,
+                    decoration: InputDecoration(hintText: "Movie Name"),
+                  ),
+                ],
               ),
             ),
             actions: <Widget>[
