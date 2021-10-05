@@ -4,7 +4,7 @@ import 'package:flutter_movie_app/pages/about_page.dart';
 import 'package:flutter_movie_app/pages/contact_page.dart';
 import 'package:flutter_movie_app/pages/home_page.dart';
 import 'package:flutter_movie_app/pages/profile_page.dart';
-import 'package:flutter_movie_app/pages/search.dart';
+import 'package:flutter_movie_app/pages/search_page.dart';
 import 'package:sizer/sizer.dart';
 
 void main() {

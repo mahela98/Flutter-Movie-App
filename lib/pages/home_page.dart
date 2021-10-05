@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_movie_app/components/home_tab.dart';
 import 'package:flutter_movie_app/components/navigation_drawer.dart';
 import 'package:flutter_movie_app/components/tab_tv_shows.dart';
 import 'package:flutter_movie_app/models/movie_data.dart';
-import 'package:flutter_movie_app/pages/search.dart';
+import 'package:flutter_movie_app/pages/search_page.dart';
 import 'package:flutter_movie_app/urls/urls.dart';
 import 'package:sizer/sizer.dart';
 import '../components/tab_movies.dart';
@@ -163,7 +164,8 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
         body: TabBarView(children: [
-          Trending(MovieDB.moviedb_trending_movie_url),
+          // Trending(MovieDB.moviedb_trending_movie_url),
+          HomeTab(),
           Trending(MovieDB.moviedb_trending_movie_url),
           Trending(MovieDB.moviedb_top_rated_movie_url),
           Trending(MovieDB.moviedb_upcomming_movie_url),

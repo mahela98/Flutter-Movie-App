@@ -1,5 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'dart:ffi';
+
+import 'package:flutter/gestures.dart';
+import 'package:flutter_movie_app/components/movie_card.dart';
+import 'package:flutter_movie_app/models/movie_data.dart';
+import 'package:flutter_movie_app/services/api_manager.dart';
+import 'package:flutter_movie_app/urls/urls.dart';
+import '../pages/movie_details_page.dart';
 
 final List<String> imgList = [
   'https://images.unsplash.com/photo-1520342868574-5fa3804e551c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=6ff92caffcdd63681a35134a6770ed3b&auto=format&fit=crop&w=1951&q=80',
@@ -10,38 +18,48 @@ final List<String> imgList = [
   'https://images.unsplash.com/photo-1519985176271-adb1088fa94c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=a0c8d632e977f94e5d312d9893258f59&auto=format&fit=crop&w=1355&q=80'
 ];
 
-class AboutPage extends StatefulWidget {
-  const AboutPage({Key? key}) : super(key: key);
+class HomeTab extends StatefulWidget {
+  const HomeTab({Key? key}) : super(key: key);
 
   @override
-  _AboutPageState createState() => _AboutPageState();
+  _HomeTabState createState() => _HomeTabState();
 }
 
-class _AboutPageState extends State<AboutPage> {
+class _HomeTabState extends State<HomeTab> {
+  late Future<Movie?> _trendingMovieModel;
+  var resentMovies = MovieDB.moviedb_trending_movie_url;
+  void initState() {
+    // _trendingMovieModel = ApiManager().getMovieData(resentMovies);
+
+    Future funcThatMakesAsyncCall() async {
+      var result = await ApiManager().getMovieData(resentMovies);
+      void f(Movie? result) {
+        if (result != null) {
+          print(result.results[1].originalTitle);
+        } else {
+          print("null valur");
+        }
+      }
+
+      f(result);
+    }
+
+    funcThatMakesAsyncCall();
+    // print(_trendingMovieModel);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('About'),
-        backgroundColor: Colors.transparent,
-        shadowColor: Colors.black,
-        elevation: 1,
-        leading: Builder(builder: (context) {
-          return IconButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              icon: Icon(Icons.arrow_back_ios_new_rounded));
-        }),
-      ),
-      body: Container(
+    return SafeArea(
+      child: Container(
         child: Column(
           children: [
             CarouselSlider(
               items: imageSliders,
               options: CarouselOptions(
                 autoPlay: true,
-                aspectRatio: 2.0,
+                aspectRatio: 1.9,
                 enlargeCenterPage: true,
               ),
             ),
@@ -78,7 +96,7 @@ final List<Widget> imageSliders = imgList
                           ),
                         ),
                         padding: EdgeInsets.symmetric(
-                            vertical: 25, horizontal: 25.0),
+                            vertical: 15, horizontal: 25.0),
                         child: Text(
                           'No. ${imgList.indexOf(item)} image imageimageimageimageimageimageimageimage',
                           style: TextStyle(
