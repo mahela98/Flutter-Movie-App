@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter_movie_app/components/tvshow_card.dart';
+import 'package:flutter_movie_app/models/tv_show.dart';
+import 'package:flutter_movie_app/pages/tvshow_details_page.dart';
 import 'dart:ffi';
 import 'package:sizer/sizer.dart';
 
@@ -19,10 +22,13 @@ class HomeTab extends StatefulWidget {
 
 class _HomeTabState extends State<HomeTab> {
   late Future<Movie?> _trendingMovieModel;
-  var resentMovies = MovieDB.moviedb_trending_movie_url;
+  late Future<TvShowsData?> _tvShowModel;
 
   void initState() {
-    _trendingMovieModel = ApiManager().getMovieData(resentMovies);
+    _trendingMovieModel =
+        ApiManager().getMovieData(MovieDB.moviedb_trending_movie_url);
+    _tvShowModel =
+        ApiManager().getTvShowData(MovieDB.moviedb_popular_tvshows_url);
     super.initState();
   }
 
@@ -40,8 +46,12 @@ class _HomeTabState extends State<HomeTab> {
                   tileMode: TileMode.clamp,
                   begin: Alignment.topRight,
                   end: Alignment.bottomLeft,
+                  stops: [
+                    0.01,
+                    0.9,
+                  ],
                   colors: [
-                    Colors.indigo,
+                    Colors.teal,
                     Colors.black,
                   ],
                 )),
@@ -101,9 +111,12 @@ class _HomeTabState extends State<HomeTab> {
                   tileMode: TileMode.clamp,
                   begin: Alignment.topRight,
                   end: Alignment.bottomLeft,
-                  stops: [0.01, 0.2, 0.6],
+                  stops: [
+                    0.01,
+                    0.9,
+                  ],
                   colors: [
-                    Colors.transparent,
+                    // Colors.transparent,
                     Colors.teal,
                     Colors.black,
                   ],
@@ -118,8 +131,8 @@ class _HomeTabState extends State<HomeTab> {
             )),
         Container(
           height: 42.h, // flex: 7,
-          child: FutureBuilder<Movie?>(
-              future: _trendingMovieModel,
+          child: FutureBuilder<TvShowsData?>(
+              future: _tvShowModel,
               builder: (context, AsyncSnapshot snapshot) {
                 if (snapshot.data != null) {
                   return GridView.builder(
@@ -128,20 +141,20 @@ class _HomeTabState extends State<HomeTab> {
                     itemCount: 5,
                     gridDelegate:
                         const SliverGridDelegateWithFixedCrossAxisCount(
-                      childAspectRatio: 10 / 6,
+                      childAspectRatio: 9 / 5.5,
                       crossAxisCount: 1,
                     ),
                     // scrollDirection: Axis.horizontal,
                     itemBuilder: (context, index) {
-                      var movie = snapshot.data!.results[index];
+                      var tvShow = snapshot.data!.results[index];
                       return Padding(
                         padding: const EdgeInsets.all(0),
                         child: TextButton(
-                          child: MovieCard(movie),
+                          child: TvShowCard(tvShow),
                           onPressed: () {
                             Navigator.push(context,
                                 MaterialPageRoute(builder: (context) {
-                              return MovieDetailsPage(movie);
+                              return TvShowDetailsPage(tvShow);
                             }));
                           },
                         ),
