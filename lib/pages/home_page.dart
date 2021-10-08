@@ -95,73 +95,80 @@ class _HomePageState extends State<HomePage> {
             canvasColor: Colors.transparent,
           ),
         ),
-        appBar: AppBar(
-          backgroundColor: Colors.teal,
-          shadowColor: Colors.black,
-          elevation: 1,
-          actions: [
-            IconButton(
-              onPressed: () {
-                _displayTextInputDialog(context);
-              },
-              icon: const Icon(Icons.search),
-            )
-          ],
-          leading: Builder(builder: (context) {
-            return IconButton(
-                onPressed: () {
-                  Scaffold.of(context).openDrawer();
-                },
-                icon: Icon(Icons.menu));
-          }),
-          // leading: Icon(Icons.search_outlined),
+        body: NestedScrollView(
+          floatHeaderSlivers: true,
+          headerSliverBuilder: (index, innBoxIsScrolled) => [
+            SliverAppBar(
+              pinned: true,
+              floating: true,
+              snap: true,
+              backgroundColor: Colors.teal,
+              shadowColor: Colors.black,
+              elevation: 1,
+              actions: [
+                IconButton(
+                  onPressed: () {
+                    _displayTextInputDialog(context);
+                  },
+                  icon: const Icon(Icons.search),
+                )
+              ],
+              leading: Builder(builder: (context) {
+                return IconButton(
+                    onPressed: () {
+                      Scaffold.of(context).openDrawer();
+                    },
+                    icon: const Icon(Icons.menu));
+              }),
+              // leading: Icon(Icons.search_outlined),
 
-          title: const Center(
-            child: Text('Movie App'),
+              title: const Text('Movie App'),
+              centerTitle: true,
+              automaticallyImplyLeading: false,
+              bottom: const TabBar(
+                isScrollable: true,
+                tabs: [
+                  Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Text(
+                      "Home",
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Text("Trending Movies"),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Text("Top Rated Movies"),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Text("Upcoming Movies"),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Text("Popular Tv Shows"),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Text("Top Tv Shows"),
+                  ),
+                ],
+              ),
+            ),
+          ],
+          body: SafeArea(
+            child: TabBarView(children: [
+              // Trending(MovieDB.moviedb_trending_movie_url),
+              HomeTab(),
+              Trending(MovieDB.moviedb_trending_movie_url),
+              Trending(MovieDB.moviedb_top_rated_movie_url),
+              Trending(MovieDB.moviedb_upcomming_movie_url),
+              TvShows(MovieDB.moviedb_popular_tvshows_url),
+              TvShows(MovieDB.moviedb_top_rated_tvshows_url),
+            ]),
           ),
-          automaticallyImplyLeading: false,
-          bottom: const TabBar(
-            isScrollable: true,
-            tabs: [
-              Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Text(
-                  "Home",
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Text("Trending Movies"),
-              ),
-              Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Text("Top Rated Movies"),
-              ),
-              Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Text("Upcoming Movies"),
-              ),
-              Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Text("Popular Tv Shows"),
-              ),
-              Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Text("Top Tv Shows"),
-              ),
-            ],
-          ),
-        ),
-        body: SafeArea(
-          child: TabBarView(children: [
-            // Trending(MovieDB.moviedb_trending_movie_url),
-            HomeTab(),
-            Trending(MovieDB.moviedb_trending_movie_url),
-            Trending(MovieDB.moviedb_top_rated_movie_url),
-            Trending(MovieDB.moviedb_upcomming_movie_url),
-            TvShows(MovieDB.moviedb_popular_tvshows_url),
-            TvShows(MovieDB.moviedb_top_rated_tvshows_url),
-          ]),
         ),
         floatingActionButton: FloatingActionButton(
           elevation: 5,
