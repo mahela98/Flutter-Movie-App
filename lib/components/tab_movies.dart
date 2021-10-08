@@ -1,13 +1,9 @@
-import 'dart:ffi';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_movie_app/components/movie_card.dart';
 import 'package:flutter_movie_app/models/movie_data.dart';
-import 'package:flutter_movie_app/services/api_manager.dart';
-import 'package:flutter_movie_app/urls/urls.dart';
+
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import '../pages/movie_details_page.dart';
-import 'dart:convert';
 import 'package:sizer/sizer.dart';
 
 import 'package:http/http.dart' as http;
