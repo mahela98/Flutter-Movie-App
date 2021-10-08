@@ -31,8 +31,8 @@ class _TvShowDetailsPageState extends State<TvShowDetailsPage> {
         slivers: <Widget>[
           SliverAppBar(
             expandedHeight: 40.h,
-            floating: false,
-            pinned: false,
+            floating: true,
+            pinned: true,
             flexibleSpace: FlexibleSpaceBar(
               title: Text(
                 widget.tvshow.name,
@@ -41,13 +41,13 @@ class _TvShowDetailsPageState extends State<TvShowDetailsPage> {
               ),
               background: Container(
                 decoration: BoxDecoration(
+                  color: Colors.teal,
                   image: DecorationImage(
                       image: NetworkImage(
                         widget.backgroundImageUrl + widget.tvshow.backdropPath,
                       ),
                       fit: BoxFit.cover),
                 ),
-                // color: Colors.red,
               ),
             ),
           ),

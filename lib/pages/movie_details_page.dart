@@ -37,6 +37,7 @@ class _MovieDetailsPageState extends State<MovieDetailsPage> {
               ),
               background: Container(
                 decoration: BoxDecoration(
+                  color: Colors.teal,
                   image: DecorationImage(
                       image: NetworkImage(
                         widget.backgroundImageUrl + widget.movie.backdropPath,

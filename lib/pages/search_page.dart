@@ -17,12 +17,13 @@ class _SearchState extends State<Search> {
       extendBodyBehindAppBar: true,
       appBar: AppBar(
         // leading: IconButton(onPressed: () {}, icon: Icon(Icons.arrow_back)),
-        backgroundColor: Colors.black.withOpacity(0.6),
+        backgroundColor: Colors.teal,
         shadowColor: Colors.black,
         elevation: 1,
         title: Text(widget.query),
       ),
-      body: Trending(MovieDB.searchMovieDB(widget.query ?? 'iron')),
+      body: SafeArea(
+          child: Trending(MovieDB.searchMovieDB(widget.query ?? 'iron'))),
     );
   }
 }

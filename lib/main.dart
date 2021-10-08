@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
         title: 'Movie App',
         theme: ThemeData(
           brightness: Brightness.dark,
-          scaffoldBackgroundColor: Colors.indigo.withOpacity(0.13),
+          scaffoldBackgroundColor: Colors.indigo.withOpacity(0.15),
         ),
         initialRoute: '/',
         routes: {
