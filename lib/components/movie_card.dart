@@ -39,26 +39,28 @@ class MovieCard extends StatelessWidget {
           ),
           const Flexible(
             child: Text(''),
-            flex: 10,
+            flex: 11,
             fit: FlexFit.tight,
           ),
           Flexible(
-            flex: 3,
+            flex: 4,
             child: Container(
               padding: EdgeInsets.all(1.h),
               // color: Colors.black.withOpacity(0.7),
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                   color: Colors.black.withOpacity(0.7)),
-              width: 100.w,
-              height: 100.h,
-              child: Text(
-                movie.title,
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 15.sp,
-                  color: Colors.white,
-                  height: 1,
+              // width: 100.w,
+              // height: 100.h,
+              child: Center(
+                child: Text(
+                  movie.title,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 15.sp,
+                    color: Colors.white,
+                    height: 1,
+                  ),
                 ),
               ),
             ),

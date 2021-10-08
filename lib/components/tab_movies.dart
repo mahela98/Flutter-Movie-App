@@ -8,6 +8,8 @@ import 'package:flutter_movie_app/urls/urls.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import '../pages/movie_details_page.dart';
 import 'dart:convert';
+import 'package:sizer/sizer.dart';
+
 import 'package:http/http.dart' as http;
 
 class Trending extends StatefulWidget {
@@ -18,7 +20,6 @@ class Trending extends StatefulWidget {
 }
 
 class _TrendingState extends State<Trending> {
-  // late Future<Movie?> _trendingMovieModel;
   int currentPage = 1;
   late int totalPages;
   List<Result> moviesList = [];
@@ -26,8 +27,8 @@ class _TrendingState extends State<Trending> {
   final RefreshController refreshController =
       RefreshController(initialRefresh: true);
 
+  @override
   void initState() {
-    // _trendingMovieModel = ApiManager().getMovieData(widget.movieUrl);
     super.initState();
   }
 
@@ -63,57 +64,49 @@ class _TrendingState extends State<Trending> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Row(
-        children: <Widget>[
-          Expanded(
-            child: SmartRefresher(
-              enablePullUp: true,
-              controller: refreshController,
-              onRefresh: () async {
-                final result = await getMovieData(isRefresh: true);
-                if (result) {
-                  refreshController.refreshCompleted();
-                } else {
-                  refreshController.refreshFailed();
-                }
+    return SmartRefresher(
+      enablePullUp: true,
+      controller: refreshController,
+      onRefresh: () async {
+        final result = await getMovieData(isRefresh: true);
+        if (result) {
+          refreshController.refreshCompleted();
+        } else {
+          refreshController.refreshFailed();
+        }
+      },
+      onLoading: () async {
+        final result = await getMovieData();
+        if (result) {
+          refreshController.loadComplete();
+        } else {
+          refreshController.loadFailed();
+        }
+      },
+      child: GridView.builder(
+        // padding: EdgeInsets.fromLTRB(0, 20.h, 0, 0),
+        physics: const AlwaysScrollableScrollPhysics(),
+        shrinkWrap: true,
+        itemCount: moviesList.length,
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          childAspectRatio: 5.5 / 9,
+          crossAxisCount: 2,
+        ),
+        // scrollDirection: Axis.horizontal,
+        itemBuilder: (context, index) {
+          var movie = moviesList[index];
+          return Padding(
+            padding: const EdgeInsets.all(0),
+            child: TextButton(
+              child: MovieCard(movie),
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return MovieDetailsPage(movie);
+                }));
               },
-              onLoading: () async {
-                final result = await getMovieData();
-                if (result) {
-                  refreshController.loadComplete();
-                } else {
-                  refreshController.loadFailed();
-                }
-              },
-              child: GridView.builder(
-                physics: const AlwaysScrollableScrollPhysics(),
-                shrinkWrap: true,
-                itemCount: moviesList.length,
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  childAspectRatio: 5.5 / 10.0,
-                  crossAxisCount: 2,
-                ),
-                // scrollDirection: Axis.horizontal,
-                itemBuilder: (context, index) {
-                  var movie = moviesList[index];
-                  return Padding(
-                    padding: const EdgeInsets.all(0),
-                    child: TextButton(
-                      child: MovieCard(movie),
-                      onPressed: () {
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (context) {
-                          return MovieDetailsPage(movie);
-                        }));
-                      },
-                    ),
-                  );
-                },
-              ),
             ),
-          ),
-        ],
+          );
+        },
       ),
     );
   }

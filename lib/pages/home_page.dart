@@ -59,16 +59,6 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             actions: <Widget>[
-              // FlatButton(
-              //   color: Colors.red,
-              //   textColor: Colors.white,
-              //   child: Text('CANCEL'),
-              //   onPressed: () {
-              //     setState(() {
-              //       Navigator.pop(context);
-              //     });
-              //   },
-              // ),
               TextButton(
                 child: Text('Search'),
                 onPressed: () {
@@ -97,15 +87,18 @@ class _HomePageState extends State<HomePage> {
     return DefaultTabController(
       length: 6,
       child: Scaffold(
-        drawerEnableOpenDragGesture: false,
+        extendBodyBehindAppBar: true,
+        drawerEnableOpenDragGesture: true,
         drawer: Theme(
           child: NavigationDrawer(),
           data: Theme.of(context).copyWith(
             canvasColor: Colors.transparent,
           ),
         ),
-        extendBodyBehindAppBar: true,
         appBar: AppBar(
+          backgroundColor: Colors.teal,
+          shadowColor: Colors.black,
+          elevation: 1,
           actions: [
             IconButton(
               onPressed: () {
@@ -122,9 +115,7 @@ class _HomePageState extends State<HomePage> {
                 icon: Icon(Icons.menu));
           }),
           // leading: Icon(Icons.search_outlined),
-          backgroundColor: Colors.black.withOpacity(0.6),
-          shadowColor: Colors.black,
-          elevation: 1,
+
           title: const Center(
             child: Text('Movie App'),
           ),
@@ -161,15 +152,17 @@ class _HomePageState extends State<HomePage> {
             ],
           ),
         ),
-        body: TabBarView(children: [
-          Trending(MovieDB.moviedb_trending_movie_url),
-          // HomeTab(),
-          Trending(MovieDB.moviedb_trending_movie_url),
-          Trending(MovieDB.moviedb_top_rated_movie_url),
-          Trending(MovieDB.moviedb_upcomming_movie_url),
-          TvShows(MovieDB.moviedb_popular_tvshows_url),
-          TvShows(MovieDB.moviedb_top_rated_tvshows_url),
-        ]),
+        body: SafeArea(
+          child: TabBarView(children: [
+            // Trending(MovieDB.moviedb_trending_movie_url),
+            HomeTab(),
+            Trending(MovieDB.moviedb_trending_movie_url),
+            Trending(MovieDB.moviedb_top_rated_movie_url),
+            Trending(MovieDB.moviedb_upcomming_movie_url),
+            TvShows(MovieDB.moviedb_popular_tvshows_url),
+            TvShows(MovieDB.moviedb_top_rated_tvshows_url),
+          ]),
+        ),
         floatingActionButton: FloatingActionButton(
           elevation: 5,
           onPressed: () {

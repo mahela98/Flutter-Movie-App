@@ -71,7 +71,7 @@ class _HomeTabState extends State<HomeTab> {
                   return GridView.builder(
                     shrinkWrap: true,
                     scrollDirection: Axis.horizontal,
-                    itemCount: 5,
+                    itemCount: 10,
                     gridDelegate:
                         const SliverGridDelegateWithFixedCrossAxisCount(
                       childAspectRatio: 9 / 5.5,
@@ -137,7 +137,7 @@ class _HomeTabState extends State<HomeTab> {
                   return GridView.builder(
                     shrinkWrap: true,
                     scrollDirection: Axis.horizontal,
-                    itemCount: 5,
+                    itemCount: 10,
                     gridDelegate:
                         const SliverGridDelegateWithFixedCrossAxisCount(
                       childAspectRatio: 9 / 5.5,
