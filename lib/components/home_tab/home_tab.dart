@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter_movie_app/components/tvshow_card.dart';
 import 'package:flutter_movie_app/models/tv_show.dart';
 import 'package:flutter_movie_app/pages/tvshow_details_page.dart';
