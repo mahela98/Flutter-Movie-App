@@ -1,7 +1,7 @@
 import 'dart:convert';
-import 'package:flutter_movie_app/models/tv_show.dart';
 import 'package:http/http.dart' as http;
 import '../models/movie_data.dart';
+import '../models/tv_show.dart';
 import '../urls/urls.dart';
 import '../models/youtube_video_details.dart';
 

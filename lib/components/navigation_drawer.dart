@@ -34,7 +34,7 @@ class NavigationDrawer extends StatelessWidget {
                   padding: EdgeInsets.zero,
                   children: [
                     DrawerHeader(
-                      padding: EdgeInsets.all(10),
+                      padding: const EdgeInsets.all(10),
                       decoration: BoxDecoration(
                         color: Colors.black.withOpacity(0.8),
                         //color: Colors.amberAccent[700],
@@ -53,8 +53,8 @@ class NavigationDrawer extends StatelessWidget {
                                       Navigator.pushNamed(context, '/profile');
                                     },
                                     child: const Text('')),
-                                backgroundImage: NetworkImage(
-                                    'https://images.unsplash.com/photo-1453728013993-6d66e9c9123a?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8dmlld3xlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80'),
+                                backgroundImage: const NetworkImage(
+                                    'https://www.pngall.com/wp-content/uploads/5/User-Profile-PNG-Image.png'),
                               ),
                             ),
                             SizedBox(
